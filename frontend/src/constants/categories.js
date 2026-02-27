@@ -1,0 +1,20 @@
+export const Categories = [
+    { label: "Shoes", value: "Shoes" },
+    { label: "Watches", value: "Watches" },
+    { label: "Football", value: "Football" },
+    { label: "Phones", value: "Phones" },
+    { label: "Musical Instrument", value: "Musical_Instrument" },
+    { label: "Laptops", value: "Laptops" },
+    { label: "Headphones", value: "Headphones" },
+    
+    { label: "Accessories", value: "Accessories" },
+    { label: "Bags", value: "Bags" },
+    { label: "Home Appliances", value: "Home_Appliances" },
+    { label: "Furniture", value: "Furniture" },
+    { label: "Books", value: "Books" },
+    { label: "Fitness", value: "Fitness" },
+    { label: "Gaming", value: "Gaming" },
+    { label: "Clothing", value: "Clothing" },
+    { label: "Kitchen & Dining", value: "Kitchen_Dining" },
+    { label: "Automotive Accessories", value: "Automotive_Accessories" },
+]
