@@ -12,6 +12,7 @@ export default function ProductCard({ product }) {
                 <img
                     src={imgSrc}
                     alt={product.name}
+                    loading="lazy"
                     className="w-full h-full object-contain p-6 transition-transform duration-300 group-hover:scale-105"
                 />
 
@@ -51,7 +52,7 @@ export default function ProductCard({ product }) {
                 </div>
 
                 {product.stock > 0 && product.stock <= 5 && (
-                    <span className="text-xs text-orange-500 font-medium">
+                    <span className="text-xs text-red-500 font-medium">
                         Last {product.stock} items left
                     </span>
                 )}

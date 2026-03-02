@@ -1,24 +1,28 @@
 import { useEffect, useState } from "react"
 import productApi from "../../api/productApi"
 import ProductCard from "../components/ProductCard"
+import { useSearchParams } from "react-router-dom"
 
 const ProductsList = () => {
     const [products, setProducts] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+    const [searchParams] = useSearchParams();
+    const category = searchParams.get("category")
 
     useEffect(() => {
-        const load = async () => {
+        const loadProducts = async () => {
             try {
                 const res = await productApi.allProducts()
                 setProducts(res.data.items)
             } catch (error) {
                 setError("Failed to load Products")
+                console.error("Error fetching products:", error)
             } finally {
                 setLoading(false)
             }
         }
-        load()
+        loadProducts()
     }, [])
 
     if (loading) return <div>Loading...</div>

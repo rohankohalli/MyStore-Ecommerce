@@ -17,18 +17,23 @@ export const createProduct = async (req, res, next) => {
 
 export const getAllProducts = async (req, res, next) => {
     try {
-        const page = Number(req.query.page) || 1
-        const limit = Number(req.query.limit) || 15
+        const offset = 0
+        const limit = 15
 
+        const { category } = req.query
+
+        const whereClause = category ? { category } : {}
+        
         const { rows, count } = await Products.findAndCountAll({
             limit,
-            offset: (page - 1) * limit,
-            order: [["createdAt", "DESC"]]
+            offset,
+            order: [["createdAt", "DESC"]],
+            where: whereClause,
         })
 
         res.json({
             items: rows,
-            data: { page, limit, total: count }
+            data: { offset, limit, total: count }
         })
     } catch (err) {
         next(err)

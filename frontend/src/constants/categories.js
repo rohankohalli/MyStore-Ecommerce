@@ -1,11 +1,11 @@
 export const Categories = [
     { label: "Shoes", value: "Shoes" },
     { label: "Watches", value: "Watches" },
-    { label: "Football", value: "Football" },
     { label: "Phones", value: "Phones" },
-    { label: "Musical Instrument", value: "Musical_Instrument" },
     { label: "Laptops", value: "Laptops" },
     { label: "Headphones", value: "Headphones" },
+    { label: "Musical Instrument", value: "Musical_Instrument" },
+    { label: "Football", value: "Football" },
     
     { label: "Accessories", value: "Accessories" },
     { label: "Bags", value: "Bags" },
