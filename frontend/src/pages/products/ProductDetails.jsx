@@ -3,7 +3,7 @@ import { useCart } from "../../context/CartContext";
 import { useEffect, useState } from "react";
 import productApi from "../../api/productApi";
 import { useAuth } from "../../context/AuthContext";
-import EditProductModal from "../../components/EditProductModal";
+import EditProductModal from "./EditProductModal";
 import toast from 'react-hot-toast';
 
 const ProductDetails = () => {

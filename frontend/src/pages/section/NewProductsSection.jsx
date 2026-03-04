@@ -1,4 +1,4 @@
-import productApi from "../api/productApi";
+import productApi from "../../api/productApi";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 

@@ -9,7 +9,7 @@ import Cart from "../orders/Cart";
 import Checkout from "../orders/Checkout";
 import OrderDetails from "../orders/OrderDetails";
 import OrdersList from "../orders/OrdersList";
-import OrderSuccess from "../OrderSuccess";
+import OrderSuccess from "../orders/OrderSuccess";
 import CreateProduct from "../products/CreateProduct";
 import ProductDetails from "../products/ProductDetails";
 import ProductsList from "../products/ProductsList";

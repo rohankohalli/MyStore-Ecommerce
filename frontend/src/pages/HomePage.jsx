@@ -1,6 +1,6 @@
-import TrendingSection from "../components/TrendingSection";
-import CategoriesSection from "../components/CategoriesSection";
-import NewProductsSection from "../components/NewProductsSection";
+import TrendingSection from "./section/TrendingSection";
+import CategoriesSection from "./section/CategoriesSection";
+import NewProductsSection from "./section/NewProductsSection";
 
 const HomePage = () => {
 

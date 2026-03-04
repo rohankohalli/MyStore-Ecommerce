@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import productApi from "../api/productApi"
+import productApi from "../../api/productApi"
 import { Link } from "react-router-dom"
 
 const TrendingSection = () => {
@@ -22,6 +22,9 @@ const TrendingSection = () => {
         trendingProducts()
     }, [])
 
+    if (loading) return <div>Loading...</div>
+    if (error) return <div>{error}</div>
+
     return (
         <div>
             <div>
@@ -29,11 +32,11 @@ const TrendingSection = () => {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-5">
                 {trendingProducts.map(trend => (
-                    <Link to={`/products/${trend.product.id}`}>
-                        <div key={trend.product.id} className="border rounded-lg p-0.5 flex flex-col">
+                    <Link to={`/products/${trend.product.id}`} key={trend.product.id}>
+                        <div className="border rounded-lg p-0.5 flex flex-col hover:shadow-lg transition">
                             <img
                                 src={`${import.meta.env.VITE_API_URL}${trend.product.image}`}
-                                alt={trend.name}
+                                alt={trend.product.name}
                                 className="object-contain h-48 rounded" />
 
                             <div className="bg-gray-200">
