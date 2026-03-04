@@ -3,7 +3,7 @@ import ForgotPassword from "../auth/ForgotPassword";
 import Login from "../auth/Login";
 import Register from "../auth/Register";
 import ResetPassword from "../auth/ResetPassword";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar";
 import NotFound from "../NotFound";
 import Cart from "../orders/Cart";
 import Checkout from "../orders/Checkout";

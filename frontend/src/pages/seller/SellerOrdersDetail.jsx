@@ -59,7 +59,7 @@ const SellerOrdersDetail = () => {
             </p>
 
             <div className="space-y-4">
-                {order.orderitems.map(item => (
+                {order.order_items.map(item => (
                     <div
                         key={item.id}
                         className="flex items-center gap-4 border rounded-lg p-4"

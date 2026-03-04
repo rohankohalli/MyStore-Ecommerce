@@ -11,7 +11,7 @@ const Navbar = () => {
     return (
         <div className="h-screen flex flex-col justify-between bg-gray-100 shadow-black">
             <header
-                className="w-full bg-white/10 shadow-lg px-4 py-2 flex items-center justify-between top-0 sticky backdrop-blur-xs">
+                className="w-full bg-white/10 shadow-lg px-4 py-2 flex items-center justify-between top-0 sticky backdrop-blur-xs z-30">
                 <div className="flex flex-row items-center">
                     <div className="text-2xl mr-4">
                         <Link to="/list">MyStore</Link>

@@ -44,7 +44,7 @@ const OrdersList = () => {
                         <div className="flex justify-between text-sm text-gray-600 mt-1">
                             <span>Status: {order.status} </span>
                             <span>
-                                ₹{order.orderitems.reduce((sum, i) => sum + i.quantity * i.priceAtPurchase, 0)}
+                                ₹{order.order_items.reduce((sum, i) => sum + i.quantity * i.priceAtPurchase, 0)}
                             </span>
                         </div>
                     </Link>

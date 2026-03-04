@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import productApi from "../../api/productApi"
-import ProductCard from "../components/ProductCard"
+import ProductCard from "../../components/ProductCard"
 import { useSearchParams } from "react-router-dom"
 
 const ProductsList = () => {

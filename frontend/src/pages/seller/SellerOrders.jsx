@@ -41,7 +41,7 @@ const SellerOrders = () => {
                             <div>Date: {new Date(order.createdAt).toLocaleDateString()}</div>
 
                             <div className="mt-2 space-y-2">
-                                {order.orderitems.map(item => (
+                                {order.order_items.map(item => (
 
                                     <div key={item.id} className="flex items-center gap-3">
                                         <img

@@ -1,3 +1,5 @@
+import sequelize from "../config/dbConn.js";
+import OrderItems from "../models/OrderItem.js";
 import Products from "../models/Product.js"
 import Users from "../models/Users.js";
 
@@ -118,5 +120,21 @@ export const deleteProduct = async (req, res, next) => {
         res.json({ message: "Product Deleted" });
     } catch (err) {
         next(err)
+    }
+}
+
+export const trendingProducts = async (req, res, next) => {
+    try {
+        const trendingProducts = await OrderItems.findAll({
+            attributes:["productId", [sequelize.fn("SUM", sequelize.col("quantity")), "totalSold"]],
+            group: ["productId"],
+            order: [[sequelize.literal("totalSold"), "DESC"]],
+            limit: 10,
+            include: [{ model: Products, attributes: ["id", "name", "price", "image"] }]
+        })
+
+        res.json({ trendingProducts })
+    } catch (error) {
+        next(error)
     }
 }
