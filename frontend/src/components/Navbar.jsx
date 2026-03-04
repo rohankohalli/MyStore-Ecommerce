@@ -1,7 +1,7 @@
 import { LogIn, ShoppingCart, UserCheck } from "lucide-react";
 import { Link, Outlet } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
-import { useCart } from "../../context/CartContext";
+import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
 import SearchBox from "./SearchBox";
 import UserBox from "./User";
 
@@ -10,8 +10,8 @@ const Navbar = () => {
     const { items } = useCart()
     return (
         <div className="h-screen flex flex-col justify-between bg-gray-100 shadow-black">
-            <header className="w-full bg-white shadow-lg px-6 py-2 flex items-center 
-                justify-between">
+            <header
+                className="w-full bg-white/10 shadow-lg px-4 py-2 flex items-center justify-between top-0 sticky backdrop-blur-xs">
                 <div className="flex flex-row items-center">
                     <div className="text-2xl mr-4">
                         <Link to="/list">MyStore</Link>

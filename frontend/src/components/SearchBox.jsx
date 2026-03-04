@@ -1,6 +1,6 @@
 import { Search } from "lucide-react"
 import { useEffect, useState } from "react";
-import productApi from "../../api/productApi";
+import productApi from "../api/productApi";
 import { useNavigate } from "react-router-dom";
 
 const SearchBox = () => {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import productApi from "../../api/productApi";
+import productApi from "../api/productApi";
 import toast from "react-hot-toast";
 
 const EditProductModal = ({ product, onClose, onSave }) => {
