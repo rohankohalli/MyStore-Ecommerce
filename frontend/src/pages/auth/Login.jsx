@@ -25,8 +25,6 @@ const Login = () => {
             if (result.success) {
                 navigate("/list")
             }
-            // console.log(result.data)
-            // console.log("Login Page:", { user, loading })
         } catch (err) {
             console.error("Login error:", err);
             setError()

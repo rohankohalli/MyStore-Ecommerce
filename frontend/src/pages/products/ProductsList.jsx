@@ -13,7 +13,7 @@ const ProductsList = () => {
     useEffect(() => {
         const loadProducts = async () => {
             try {
-                const res = await productApi.allProducts()
+                const res = await productApi.allProducts({ category })
                 setProducts(res.data.items)
             } catch (error) {
                 setError("Failed to load Products")
@@ -23,7 +23,7 @@ const ProductsList = () => {
             }
         }
         loadProducts()
-    }, [])
+    }, [category])
 
     if (loading) return <div>Loading...</div>
     if (error) return <div>{error}</div>
