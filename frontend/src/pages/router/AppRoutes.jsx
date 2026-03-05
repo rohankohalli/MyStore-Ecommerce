@@ -22,6 +22,7 @@ import GuestRoute from "./GuestRoute";
 import ProtectedRoute from "./ProtectedRoute";
 import CheckoutPage from "../orders/CheckoutPage";
 import HomePage from "../HomePage";
+import Profile from "../Profile";
 
 const AppRoutes = () => {
     return (
@@ -46,6 +47,7 @@ const AppRoutes = () => {
                         <Route path="order-success/:id" element={<OrderSuccess />} />
                         <Route path="orders" element={<OrdersList />} />
                         <Route path="orders/:id" element={<OrderDetails />} />
+                        <Route path="profile" element={<Profile />} />
 
                         <Route element={<RoleRoute roles={["Seller", "Admin"]} />}>
                             <Route path="my-products" element={<MyProducts />} />
