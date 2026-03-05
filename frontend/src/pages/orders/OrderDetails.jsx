@@ -32,7 +32,7 @@ const OrderDetails = () => {
             <h3 className="text-2xl font-bold mb-6">Order #{order.id}</h3>
 
             <div className="space-y-4">
-                {order.orderitems?.map((item, idx) => (
+                {order.order_items?.map((item, idx) => (
                     <div key={idx} className="flex items-center gap-4 border p-3 rounded-lg">
                         <img
                             src={`${import.meta.env.VITE_API_URL}${item.product.image}`}

@@ -50,7 +50,7 @@ const NewProductsSection = () => {
 
                                     <p className="text-gray-600 mb-2">₹{p.price}</p>
 
-                                    <Link to={`/product/${p.id}`} className="mt-auto text-blue-600">
+                                    <Link to={`/products/${p.id}`} className="mt-auto text-blue-600">
                                         View Details
                                     </Link>
                                 </div>
