@@ -27,17 +27,17 @@ export default function UserBox({ user }) {
     const navLinks = {
         User: [
             { label: "Orders", to: "orders" },
-            {label:"Profile", to:"/profile"},            
+            { label: "Profile", to: "/profile" },
         ],
         Seller: [
             { label: "My Products", to: "my-products" },
             { label: "Dashboard", to: "dashboard" },
-            {label:"Profile", to:"/profile"}, 
+            { label: "Profile", to: "/profile" },
         ],
         Admin: [
             { label: "My Products", to: "my-products" },
             { label: "Dashboard", to: "dashboard" },
-            {label:"Profile", to:"/profile"}, 
+            { label: "Profile", to: "/profile" },
         ]
     }
 

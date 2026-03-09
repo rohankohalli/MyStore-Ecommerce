@@ -1,20 +1,34 @@
+import { Circle, CircleUser, MapPinHouse, ShoppingBag } from "lucide-react";
+import { Link, Outlet } from "react-router-dom";
+
 const Profile = () => {
-    return(
+
+    const linkStyle = "border py-3 rounded hover:bg-gray-300 text-center flex gap-2 justify-center";
+
+    return (
         <div>
             <h2 className="text-center">Profile Page</h2>
-            <p className="text-center">This is the profile page. User details and settings will be displayed here.</p>
-            <div className="flex mt-6">
-                <aside className="w-1/4  p-4 bg-gray-200 rounded">
-                    <ul className="space-y-2">
-                        <li><a href="#" className="text-blue-500 hover:underline">Account Settings</a></li>
-                        <li><a href="#" className="text-blue-500 hover:underline">Order History</a></li>
-                    </ul>
+            <div className="flex">
+                <aside className="p-4 bg-gray-200 rounded flex flex-col gap-3 h-fit w-1/5 ml-6">
+
+                    <Link to="/orders"
+                        className={`${linkStyle}`} >
+                        <ShoppingBag /> My Orders ＞
+                    </Link>
+
+                    <Link to="account" className={`${linkStyle}`}>
+                        <CircleUser /> Account Information
+                    </Link>
+
+                    <Link to="address" className={`${linkStyle}`}>
+                        <MapPinHouse /> Addresses
+                    </Link>
                 </aside>
-                <main className="w-3/4 pl-6">
-                    <p>Profile content goes here</p>
+                <main className="pl-6 text-center">
+                    <Outlet />
                 </main>
             </div>
-        </div>        
+        </div>
     )
 }
 

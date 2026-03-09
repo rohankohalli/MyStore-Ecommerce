@@ -23,6 +23,8 @@ import ProtectedRoute from "./ProtectedRoute";
 import CheckoutPage from "../orders/CheckoutPage";
 import HomePage from "../HomePage";
 import Profile from "../Profile";
+import AccountInformation from "../profile/AccountInformation";
+import Address from "../profile/Address";
 
 const AppRoutes = () => {
     return (
@@ -47,7 +49,10 @@ const AppRoutes = () => {
                         <Route path="order-success/:id" element={<OrderSuccess />} />
                         <Route path="orders" element={<OrdersList />} />
                         <Route path="orders/:id" element={<OrderDetails />} />
-                        <Route path="profile" element={<Profile />} />
+                        <Route path="profile" element={<Profile />} >
+                            <Route path="account" element={<AccountInformation />} />
+                            <Route path="address" element={<Address />} />
+                        </Route>
 
                         <Route element={<RoleRoute roles={["Seller", "Admin"]} />}>
                             <Route path="my-products" element={<MyProducts />} />
