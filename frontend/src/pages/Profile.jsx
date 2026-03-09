@@ -1,4 +1,4 @@
-import { Circle, CircleUser, MapPinHouse, ShoppingBag } from "lucide-react";
+import { CircleUser, MapPinHouse, ShoppingBag } from "lucide-react";
 import { Link, Outlet } from "react-router-dom";
 
 const Profile = () => {

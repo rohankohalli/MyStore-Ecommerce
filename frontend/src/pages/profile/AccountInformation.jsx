@@ -1,7 +1,10 @@
 const AccountInformation = () => {
     return (
         <div>
-            <h3 className="flex text-center">Account Information</h3>
+            <h3 className="flex justify-center text-center">Account Information</h3>
+            <div className="border">
+
+            </div>
         </div>
     )
 }
