@@ -23,8 +23,9 @@ import ProtectedRoute from "./ProtectedRoute";
 import CheckoutPage from "../orders/CheckoutPage";
 import HomePage from "../HomePage";
 import Profile from "../Profile";
-import AccountInformation from "../profile/AccountInformation";
+import PersonalInformation from "../profile/PersonalInformation";
 import Address from "../profile/Address";
+import SecurityPage from "../profile/Security";
 
 const AppRoutes = () => {
     return (
@@ -50,8 +51,9 @@ const AppRoutes = () => {
                         <Route path="orders" element={<OrdersList />} />
                         <Route path="orders/:id" element={<OrderDetails />} />
                         <Route path="profile" element={<Profile />} >
-                            <Route path="account" element={<AccountInformation />} />
+                            <Route path="personal" element={<PersonalInformation />} />
                             <Route path="address" element={<Address />} />
+                            <Route path="security" element={<SecurityPage />} />
                         </Route>
 
                         <Route element={<RoleRoute roles={["Seller", "Admin"]} />}>

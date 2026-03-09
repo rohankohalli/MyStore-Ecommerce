@@ -91,7 +91,7 @@ export function AuthProvider({ children }) {
         initAuth()
     }, [])
 
-    const value = { user, isAuthenticated: !!user, loading, error, register, login, logout }
+    const value = { user, isAuthenticated: !!user, loading, error, register, login, logout, setUser }
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

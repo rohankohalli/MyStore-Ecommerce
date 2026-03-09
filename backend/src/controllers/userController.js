@@ -5,12 +5,12 @@ export const getUser = async (req, res, next) => {
 
     try {
         const user = await Users.findByPk(req.user.id, {
-            attributes: ["id", "name", "email", "role"]
-            // attributes: ["id", "name", "email", "mobileNo", "dateOfBirth", "role"]
+            // attributes: ["id", "name", "email", "role"]
+            attributes: ["id", "name", "email", "mobileNo", "dateOfBirth", "role"]
         })
         if (!user) return res.status(404).json({ message: "User not found" })
 
-        res.json({user})
+        res.json({ user })
     } catch (err) {
         console.error("getUser error:", err);
         return res.status(500).json({ message: "Server error" });
@@ -19,15 +19,17 @@ export const getUser = async (req, res, next) => {
 
 export const updateUser = async (req, res, next) => {
     try {
+        const updates = {}
+        const allowed = ["name", "email", "mobileNo", "dateOfBirth"]
         for (const key of allowed) {
             if (req.body[key] !== undefined) {
                 updates[key] = req.body[key];
             }
         }
 
-        await Users.update(updates, { where: { id: req.user.id } });
+        const updatedUser = Users.update(updates, { where: { id: req.user.id } });
 
-        res.json({ message: "Profile updated" });
+        res.json({ message: "Profile updated", user: updatedUser });
     } catch (error) {
         next(error)
     }

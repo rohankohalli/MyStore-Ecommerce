@@ -45,8 +45,8 @@ const AddAddress = ({ onCreated }) => {
                     onChange={handleChange}
                     placeholder="Phone"
                     className="rounded border p-1 bg-white"
-                    required 
-                    pattern="^(\+91)?[6-9]\d{9}$"/>
+                    required
+                    pattern="^(\+91)?[6-9]\d{9}$" />
                 <input name="addressLine"
                     value={form.addressLine}
                     onChange={handleChange}
