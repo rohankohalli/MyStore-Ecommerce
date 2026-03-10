@@ -24,8 +24,8 @@ import CheckoutPage from "../orders/CheckoutPage";
 import HomePage from "../HomePage";
 import Profile from "../Profile";
 import PersonalInformation from "../profile/PersonalInformation";
-import Address from "../profile/Address";
-import SecurityPage from "../profile/Security";
+import AddressPage from "../profile/AddressPage";
+import SecurityPage from "../profile/SecurityPage";
 
 const AppRoutes = () => {
     return (
@@ -52,7 +52,7 @@ const AppRoutes = () => {
                         <Route path="orders/:id" element={<OrderDetails />} />
                         <Route path="profile" element={<Profile />} >
                             <Route path="personal" element={<PersonalInformation />} />
-                            <Route path="address" element={<Address />} />
+                            <Route path="address" element={<AddressPage />} />
                             <Route path="security" element={<SecurityPage />} />
                         </Route>
 

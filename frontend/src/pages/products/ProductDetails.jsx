@@ -82,7 +82,7 @@ const ProductDetails = () => {
                 <div className="flex items-center gap-4 mt-6">
                     {isSellerOwner ? (
                         <>
-                            <button onClick={ () => setEditing(product)}
+                            <button onClick={() => setEditing(product)}
                                 className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-xl cursor-pointer">
                                 Edit Product
                             </button>

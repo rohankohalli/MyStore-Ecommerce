@@ -36,7 +36,7 @@ const PersonalInformation = () => {
     }
 
     return (
-        <div className="flex flex-col w-full max-w-xl border rounded-lg p-6 shadow-sm">
+        <div className="flex flex-col border rounded-lg p-6 shadow-md">
 
             <div className="flex justify-between items-center mb-6">
 

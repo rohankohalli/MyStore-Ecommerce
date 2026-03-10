@@ -7,7 +7,7 @@ const Profile = () => {
         "border py-3 rounded hover:bg-gray-300 flex gap-2 justify-center items-center";
 
     return (
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
 
             <h2 className="text-center text-2xl font-semibold mb-6">
                 Profile Page
@@ -29,7 +29,7 @@ const Profile = () => {
                         <MapPinHouse /> Addresses
                     </Link>
 
-                    <Link to="secuity" className={linkStyle}>
+                    <Link to="security" className={linkStyle}>
                         <ShieldPlus /> Security
                     </Link>
                 </aside>

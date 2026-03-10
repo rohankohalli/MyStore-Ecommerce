@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import addressApi from "../../api/addressApi.js"
 import AddAddress from "./AddAddress.jsx"
-import { Plus } from "lucide-react"
 
 const AddressSection = ({ value, onChange }) => {
     const [addresses, setAddresses] = useState([])
