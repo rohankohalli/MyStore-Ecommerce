@@ -130,6 +130,7 @@ export const logout = async (req, res, next) => {
 }
 
 export const requestPasswordReset = async (req, res, next) => {
+    const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5050"
     try {
         const { email } = req.body
 
@@ -141,7 +142,7 @@ export const requestPasswordReset = async (req, res, next) => {
             resetToken: token, resetTokenExpiresAt: new Date(Date.now() + 15 * 60 * 1000)
         })
 
-        const resetLink = `http://localhost:5050/reset-password?token=${token}`;
+        const resetLink = `${frontendUrl}/reset-password?token=${token}`;
 
         await sendMail({
             to: user.email,
