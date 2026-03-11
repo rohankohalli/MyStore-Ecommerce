@@ -3,12 +3,16 @@ import addressApi from "../../api/addressApi.js"
 import AddAddress from "../checkout/AddAddress.jsx"
 import AddressCard from "../../components/AddressCard.jsx"
 import toast from "react-hot-toast"
+import AddressModal from "./AddressModal.jsx"
+import { Plus } from "lucide-react"
 
 const AddressPage = () => {
     const [addresses, setAddresses] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [showAddAddressForm, setShowAddAddressForm] = useState(false)
+    const [editingAddress, setEditingAddress] = useState(null)
+    const [editAddressModal, setEditAddressModal] = useState(false)
 
     useEffect(() => {
         const fetchAddresses = async () => {
@@ -32,8 +36,9 @@ const AddressPage = () => {
     if (loading) return <p>Loading...</p>
     if (error) return <p className="text-danger">Error: {error}</p>
 
-    const handleEdit = async (address) => {
-
+    const handleEdit = (address) => {
+        setEditingAddress(address)
+        setEditAddressModal(true)
     }
 
     const handleDelete = async (address) => {
@@ -57,15 +62,25 @@ const AddressPage = () => {
         try {
             await addressApi.setDefaultAddress(address.id)
 
-            setAddresses(prev =>
-                prev.map(a => ({ ...a, isDefault: a.id === address.id }))
-            )
+            setAddresses(prev => prev.map(a => ({ ...a, isDefault: a.id === address.id })))
 
             toast.success("Default address changed")
         } catch (error) {
             console.error("Error changing default address:", error)
             toast.error("Error changing default address")
         }
+    }
+
+    const handleSaved = (savedAddress) => {
+
+        if (editingAddress) {
+            setAddresses(prev => prev.map(a =>
+                a.id === savedAddress.id ? savedAddress : a
+            ))
+        } else {
+            setAddresses(prev => [...prev, savedAddress])
+        }
+        setEditAddressModal(false)
     }
 
     return (
@@ -89,14 +104,22 @@ const AddressPage = () => {
                 </div>
                 <div className="col-md-4">
                     <button
-                        className="bg-blue-500 text-white p-1.5 rounded-sm flex cursor-pointer"
+                        className="bg-blue-500 text-white p-1.5 rounded-sm flex cursor-pointer mb-2"
                         onClick={() => setShowAddAddressForm(!showAddAddressForm)}>
-                        {showAddAddressForm ? "Close" : "Add Address"}
+                        {showAddAddressForm ? "Close" : (<> <Plus /> Add Address </>)}
                     </button>
+
                     {showAddAddressForm && (
                         <AddAddress onCreated={handleAddressCreated} />
                     )}
                 </div>
+                {editAddressModal && (
+                    <AddressModal
+                        address={editingAddress}
+                        onClose={() => setEditAddressModal(false)}
+                        onSaved={handleSaved}
+                    />
+                )}
             </div>
         </div>
     )

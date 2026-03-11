@@ -15,7 +15,7 @@ const Profile = () => {
 
             <div className="flex gap-8">
 
-                <aside className="p-4 bg-gray-200 rounded flex flex-col gap-3 h-fit w-64">
+                <aside className="p-4 bg-gray-200 rounded flex flex-col gap-3 h-full w-64">
 
                     <Link to="/orders" className={linkStyle}>
                         <ShoppingBag /> My Orders ＞

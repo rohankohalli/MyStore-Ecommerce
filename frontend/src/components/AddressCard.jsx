@@ -18,7 +18,7 @@ const AddressCard = ({ address, onEdit, onDelete, onMakeDefault }) => {
     }, [miniMenu])
 
     return (
-        <div className="border rounded w-full max-w-72 p-2 relative">
+        <div className="border rounded w-full max-w-72 p-2 relative shadow-xl">
 
             <p className="flex justify-between mb-2">
                 <strong>{address.fullName}</strong>
