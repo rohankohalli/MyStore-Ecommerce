@@ -30,6 +30,7 @@ const AddressCard = ({ address, onEdit, onDelete, onMakeDefault }) => {
                 </button>
             </p>
 
+            <p>{address.phone}</p>
             <p>{address.addressLine}</p>
             <p>{address.city}, {address.state}, {address.country}</p>
             <p>{address.pincode}</p>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import addressApi from "../../api/addressApi.js"
-import AddAddress from "../checkout/AddAddress.jsx"
 import AddressCard from "../../components/AddressCard.jsx"
 import toast from "react-hot-toast"
 import AddressModal from "./AddressModal.jsx"
@@ -10,9 +9,8 @@ const AddressPage = () => {
     const [addresses, setAddresses] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-    const [showAddAddressForm, setShowAddAddressForm] = useState(false)
     const [editingAddress, setEditingAddress] = useState(null)
-    const [editAddressModal, setEditAddressModal] = useState(false)
+    const [showAddressModal, setShowAddressModal] = useState(false)
 
     useEffect(() => {
         const fetchAddresses = async () => {
@@ -28,17 +26,12 @@ const AddressPage = () => {
         fetchAddresses()
     }, [])
 
-    const handleAddressCreated = (newAddress) => {
-        setAddresses(prev => [...prev, newAddress])
-        setShowAddAddressForm(false)
-    }
-
     if (loading) return <p>Loading...</p>
     if (error) return <p className="text-danger">Error: {error}</p>
 
     const handleEdit = (address) => {
         setEditingAddress(address)
-        setEditAddressModal(true)
+        setShowAddressModal(true)
     }
 
     const handleDelete = async (address) => {
@@ -80,7 +73,7 @@ const AddressPage = () => {
         } else {
             setAddresses(prev => [...prev, savedAddress])
         }
-        setEditAddressModal(false)
+        setShowAddressModal(false)
     }
 
     return (
@@ -105,18 +98,18 @@ const AddressPage = () => {
                 <div className="col-md-4">
                     <button
                         className="bg-blue-500 text-white p-1.5 rounded-sm flex cursor-pointer mb-2"
-                        onClick={() => setShowAddAddressForm(!showAddAddressForm)}>
-                        {showAddAddressForm ? "Close" : (<> <Plus /> Add Address </>)}
+                        onClick={() => {
+                            setEditingAddress(null)
+                            setShowAddressModal(true)
+                        }}>
+                        <Plus /> Add Address
                     </button>
 
-                    {showAddAddressForm && (
-                        <AddAddress onCreated={handleAddressCreated} />
-                    )}
                 </div>
-                {editAddressModal && (
+                {showAddressModal && (
                     <AddressModal
                         address={editingAddress}
-                        onClose={() => setEditAddressModal(false)}
+                        onClose={() => setShowAddressModal(false)}
                         onSaved={handleSaved}
                     />
                 )}
