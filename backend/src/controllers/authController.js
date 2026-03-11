@@ -155,7 +155,7 @@ export const requestPasswordReset = async (req, res, next) => {
             `,
         })
 
-        console.log("Reset Link:", resetLink)
+        console.log(`${user.name}'s Reset Link:`, resetLink)
 
         res.json({ message: "Passwored reset link sent" })
     } catch (error) {
