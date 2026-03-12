@@ -5,20 +5,20 @@ import Products from "../models/Product.js"
 export const SellersOrders = async (req, res, next) => {
     try {
         const orders = await Orders.findAll({
-            attributes:["id", "status", "createdAt"],
+            attributes: ["id", "status", "createdAt"],
             include: [{
                 model: OrderItems,
-                required:true,
+                required: true,
                 attributes: ["id", "quantity", "priceAtPurchase"],
                 include: [{
                     model: Products,
-                    attributes:["id", "name", "image"],
+                    attributes: ["id", "name", "image"],
                     where: { sellerId: req.user.id }
                 }]
             }]
         })
 
-        res.status(200).json({ count:orders.length ,orders })
+        res.status(200).json({ count: orders.length, orders })
     } catch (error) {
         next(error)
     }
@@ -57,7 +57,6 @@ export const OrderDetails = async (req, res, next) => {
 
 export const shipOrder = async (req, res, next) => {
     const { id } = req.params
-    const sellerId = req.user.id
     try {
         const order = await Orders.findOne({
             where: { id },
@@ -65,16 +64,16 @@ export const shipOrder = async (req, res, next) => {
                 model: OrderItems,
                 include: [{
                     model: Products,
-                    where: { sellerId }
+                    where: { sellerId: req.user.id }
                 }]
             }]
         })
-        
+
         if (!order) return res.status(404).json({ message: "Order Not Found" })
 
         if (order.status !== "Placed")
             return res.status(400).json({ message: `Cannot ship order in '${order.status}' state` })
-        
+
         order.status = "Shipped"
         await order.save()
 

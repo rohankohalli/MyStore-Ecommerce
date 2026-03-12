@@ -3,12 +3,14 @@ import Products from "../models/Product.js"
 
 export const addToCart = async (req, res, next) => {
     try {
+        const userId = req.user.id
+
         const { productId, quantity } = req.body
 
         const product = await Products.findByPk(productId)
         if (!product) return res.status(404).json({ message: "Product not found" })
 
-        const existing = await Cart.findOne({ where: ({ userId: req.user.id, productId }) })
+        const existing = await Cart.findOne({ where: ({ userId, productId }) })
 
         const qty = existing ? existing.quantity + quantity : quantity
 
@@ -18,7 +20,7 @@ export const addToCart = async (req, res, next) => {
         if (existing) {
             await existing.update({ quantity: qty });
         } else {
-            await Cart.create({ userId: req.user.id, productId, quantity: qty });
+            await Cart.create({ userId, productId, quantity: qty });
         }
         res.status(201).json({ message: "Item Added to cart" })
     } catch (err) {
@@ -29,7 +31,7 @@ export const addToCart = async (req, res, next) => {
 export const getCart = async (req, res, next) => {
     try {
         const cart = await Cart.findAll({
-            attributes:["id", "userId", "quantity", "productId"],
+            attributes: ["id", "userId", "quantity", "productId"],
             where: { userId: req.user.id },
             include: [{ model: Products, attributes: ["id", "name", "price", "stock", "image"] }]
         })
@@ -46,7 +48,7 @@ export const updateCartQuantity = async (req, res, next) => {
     try {
         const { quantity } = req.body
 
-        if(!quantity || quantity <1) return res.status(400).json({message:"Inavlid Quantity!!"})
+        if (!quantity || quantity < 1) return res.status(400).json({ message: "Inavlid Quantity!!" })
 
         const item = await Cart.findOne({
             where: { userId: req.user.id, id: req.params.cartItemId },
@@ -65,8 +67,8 @@ export const updateCartQuantity = async (req, res, next) => {
 
 export const removeFromCart = async (req, res, next) => {
     try {
-        const cart = await Cart.findOne({ where: { userId: req.user.id, id:req.params.cartItemId } })
-        
+        const cart = await Cart.findOne({ where: { userId: req.user.id, id: req.params.cartItemId } })
+
         if (!cart) return res.status(404).json({ message: "Item not in cart" });
 
         await cart.destroy();
@@ -81,10 +83,11 @@ export const removeFromCart = async (req, res, next) => {
 export const mergeCart = async (req, res, next) => {
     try {
         const { items } = req.body
+        const userId = req.user.id
 
         for (const item of items) {
             const existing = await Cart.findOne({
-                where: { userId: req.user.id, productId: item.productId },
+                where: { userId, productId: item.productId },
             })
 
             if (existing) {
@@ -92,13 +95,13 @@ export const mergeCart = async (req, res, next) => {
                 await existing.save();
             } else {
                 await Cart.create({
-                    userId: req.user.id,
+                    userId,
                     productId: item.productId,
                     quantity: item.quantity,
                 });
             }
         }
-        res.json({ message: "Carts Merged"})
+        res.json({ message: "Carts Merged" })
     } catch (error) {
         next(error)
     }

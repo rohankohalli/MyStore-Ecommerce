@@ -14,10 +14,12 @@ export const addAddress = async (req, res, next) => {
     try {
         const { fullName, phone, addressLine, city, state, country, pincode } = req.body
 
-        const existingAddress = await Address.count({ where: { userId: req.user.id } })
+        const userId = req.user.id
+
+        const existingAddress = await Address.count({ where: { userId } })
 
         const address = await Address.create({
-            userId: req.user.id,
+            userId,
             fullName,
             phone,
             addressLine,
@@ -73,11 +75,13 @@ export const setDefaultAddress = async (req, res, next) => {
     try {
         const address = await Address.findByPk(req.params.id)
 
+        const userId = req.user.id
+
         if (!address) return res.status(404).json({ message: "Address Not Found" })
 
-        if (address.userId !== req.user.id) return res.status(403).json({ message: "Not Authorized" })
+        if (address.userId !== userId) return res.status(403).json({ message: "Not Authorized" })
 
-        await Address.update({ isDefault: false }, { where: { userId: req.user.id } })
+        await Address.update({ isDefault: false }, { where: { userId: userId } })
 
         await address.update({ isDefault: true })
 

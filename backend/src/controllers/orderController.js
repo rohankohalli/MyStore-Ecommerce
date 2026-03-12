@@ -7,11 +7,13 @@ import Products from "../models/Product.js"
 
 export const checkout = async (req, res, next) => {
     const t = await sequelize.transaction();
-    
+
     try {
         const { addressId, paymentMethod } = req.body
+        const userId = req.user.id
+
         const cartItems = await Cart.findAll({
-            where: { userId: req.user.id },
+            where: { userId },
             include: [{ model: Products }],
             transaction: t,
             lock: t.LOCK.UPDATE
@@ -32,18 +34,18 @@ export const checkout = async (req, res, next) => {
 
         const address = await Address.findByPk(addressId);
 
-        if (!address) { 
-            await t.rollback() 
-            return res.status(404).json({ message: "Address not found" }) 
+        if (!address) {
+            await t.rollback()
+            return res.status(404).json({ message: "Address not found" })
         }
 
-        if (address.userId !== req.user.id) {
+        if (address.userId !== userId) {
             await t.rollback()
-            return res.status(403).json({ message: "Not Authorized" }) 
+            return res.status(403).json({ message: "Not Authorized" })
         }
 
         const order = await Orders.create({
-            userId: req.user.id,
+            userId,
             status: "Placed",
             paymentMethod,
             paymentStatus: "Pending",
@@ -76,7 +78,7 @@ export const checkout = async (req, res, next) => {
             });
         }
 
-        await Cart.destroy({ where: { userId: req.user.id }, transaction: t });
+        await Cart.destroy({ where: { userId }, transaction: t });
 
         await t.commit();
 
