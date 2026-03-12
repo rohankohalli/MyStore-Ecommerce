@@ -30,7 +30,7 @@ const SecurityPage = () => {
                 return toast.success("Password Updated Successfully")
             }
         } catch (err) {
-            setError(err || 'Register failed')
+            setError(err || 'Password Update failed')
             console.error("Password Update Failed")
             toast.error("Password Update Failed")
         }
