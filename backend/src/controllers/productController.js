@@ -9,7 +9,7 @@ export const createProduct = async (req, res, next) => {
 
         const imagePath = req.file ? `/uploads/product/${req.file.filename}` : null;
 
-        const product = await Products.create({ name, description, price, stock, category, image:imagePath, sellerId: req.user.id })
+        const product = await Products.create({ name, description, price, stock, category, image: imagePath, sellerId: req.user.id })
 
         res.status(201).json({ message: "Product Added", product })
     } catch (error) {
@@ -25,7 +25,7 @@ export const getAllProducts = async (req, res, next) => {
         const { category } = req.query
 
         const whereClause = category ? { category } : {}
-        
+
         const { rows, count } = await Products.findAndCountAll({
             limit,
             offset,
@@ -79,7 +79,7 @@ export const getMyProducts = async (req, res, next) => {
 }
 
 export const updateProduct = async (req, res, next) => {
-    console.log("Content Type:", req.headers["content-type"]);
+    // console.log("Content Type:", req.headers["content-type"]);
 
     try {
         const product = await Products.findByPk(req.params.id);
@@ -88,7 +88,7 @@ export const updateProduct = async (req, res, next) => {
         const { name, description, price, stock } = req.body
 
         // console.log("Name:", req.body);
-        
+
         let imagePath = product.image;
 
         if (req.file) {
@@ -126,7 +126,7 @@ export const deleteProduct = async (req, res, next) => {
 export const trendingProducts = async (req, res, next) => {
     try {
         const trendingProducts = await OrderItems.findAll({
-            attributes:["productId", [sequelize.fn("SUM", sequelize.col("quantity")), "totalSold"]],
+            attributes: ["productId", [sequelize.fn("SUM", sequelize.col("quantity")), "totalSold"]],
             group: ["productId"],
             order: [[sequelize.literal("totalSold"), "DESC"]],
             limit: 10,

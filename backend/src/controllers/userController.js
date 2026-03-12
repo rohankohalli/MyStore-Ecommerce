@@ -1,4 +1,5 @@
 import Users from "../models/Users.js"
+import bcrypt from "bcrypt"
 
 export const getUser = async (req, res, next) => {
     if (!req.user || !req.user.id) return res.status(401).json({ message: "Invalid token payload" })
@@ -30,6 +31,29 @@ export const updateUser = async (req, res, next) => {
         const updatedUser = Users.update(updates, { where: { id: req.user.id } });
 
         res.json({ message: "Profile updated", user: updatedUser });
+    } catch (error) {
+        next(error)
+    }
+}
+
+export const changePassword = async (req, res, next) => {
+    try {
+        const { currentPassword, newPassword } = req.body
+
+        const user = await Users.findByPk(req.user.id)
+
+        if (!user) return res.status(400).json({ message: "User Not Found" })
+
+        const matchCurrentPassword = await bcrypt.compare(currentPassword, user.password)
+
+        if (!matchCurrentPassword) return res.status(400).json({ message: "Current Password Incorrect!! Try again" })
+
+        const newPasswordHash = await bcrypt.hash(newPassword, 10)
+
+        await user.update({ password: newPasswordHash })
+
+        return res.json({ message: "Password Updated Successfully" })
+
     } catch (error) {
         next(error)
     }
