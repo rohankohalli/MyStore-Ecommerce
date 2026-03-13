@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import SearchBox from "./SearchBox";
-import UserBox from "./User";
+import UserBox from "./UserBox";
 
 const Navbar = () => {
     const { user, isAuthenticated } = useAuth()
