@@ -1,6 +1,13 @@
 # MyStore
 
-A full-stack e-commerce application built to explore real-world patterns like authentication, product management, cart flows, and seller features using React and Node.js.
+A full-stack e-commerce application built to explore real-world patterns such as authentication, product management, cart flows, checkout, and seller functionality using React and Node.js.
+
+---
+
+## Purpose
+
+This project was built to practice designing and implementing a complete application across the frontend and backend.
+The focus was on understanding how different parts of an e-commerce system interact, including authentication, API design, state management, and database relationships.
 
 ---
 
@@ -25,38 +32,69 @@ Auth
 
 ---
 
+## System Architecture
+
+The application follows a typical client–server architecture.
+
+```
+React (Frontend)
+       ↓
+Axios API Requests
+       ↓
+Express REST API
+       ↓
+Sequelize ORM
+       ↓
+MySQL Database
+```
+
+---
+
 ## Features
 
-### Authentication
+Authentication
 
-Users can create accounts and securely log in using JWT authentication.
-The system uses access and refresh tokens to maintain sessions.
+* User registration and login
+* JWT authentication with access and refresh tokens
+* Forgot and reset password flow
 
-### Profile & Addresses
+Profile & Addresses
 
-Users can update profile information, change passwords, and manage multiple addresses.
-A default address can be selected for checkout.
+* Update profile information
+* Change password
+* Manage multiple addresses
+* Set default address for checkout
 
-### Product Browsing
+Product Browsing
 
-Users can explore products, view product details, and browse items by category.
+* Browse products
+* View product details
+* Filter products by category
 
-### Cart
+Cart
 
-Users can add products to the cart, update quantities, and remove items.
+* Add products to cart
+* Update cart item quantities
+* Remove items from cart
 
-### Checkout & Orders
+Checkout & Orders
 
-Users can place orders using saved addresses and view their order history and order details.
+* Select address during checkout
+* Create orders from cart items
+* View order history and order details
 
-### Seller Tools
+Seller Tools
 
-Sellers can create, update, and delete products and manage incoming orders.
+* Create products
+* Update product details
+* Delete products
+* View seller orders
 
-### UI
+UI
 
-The interface includes responsive layouts, a category carousel, and interactive UI elements such as password visibility toggles.
-
+* Responsive layout
+* Category carousel
+* Password visibility toggle
 
 ---
 
@@ -80,7 +118,7 @@ The interface includes responsive layouts, a category carousel, and interactive 
 
 ## Run Locally
 
-Backend
+### Backend
 
 ```bash
 cd backend
@@ -88,7 +126,7 @@ npm install
 npm run dev
 ```
 
-Frontend
+### Frontend
 
 ```bash
 cd frontend
@@ -105,8 +143,8 @@ frontend/
 backend/
 ```
 
-Frontend → React UI
-Backend → REST API
+frontend → React UI
+backend → Express REST API
 
 ---
 
