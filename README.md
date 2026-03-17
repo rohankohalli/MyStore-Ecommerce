@@ -137,16 +137,4 @@ npm run dev
 
 ---
 
-## Project Structure
-
-```
-frontend/
-backend/
-```
-
-* frontend → React UI
-* backend → Express REST API
-
----
-
 <!--Built by **Rohan Kohalli**-->
