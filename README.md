@@ -4,13 +4,13 @@ A full-stack e-commerce application built to explore real-world patterns such as
 
 ---
 
-## Purpose
+<!--## Purpose
 
 This project was built to practice designing and implementing a complete application across the frontend and backend.
 The focus was on understanding how different parts of an e-commerce system interact, including authentication, API design, state management, and database relationships.
 
 ---
-
+-->
 ## Stack
 
 Frontend
@@ -49,6 +49,25 @@ MySQL Database
 ```
 
 ---
+
+<!--
+## Screenshots
+
+### Home
+![Home](./screenshots/home.png)
+
+### Product Listing
+![Products](./screenshots/products.png)
+
+### Checkout
+![Checkout](./screenshots/checkout.png)
+
+### Seller Dashboard
+![Seller](./screenshots/seller.png)
+
+---
+
+-->
 
 ## Features
 
@@ -98,24 +117,6 @@ UI
 
 ---
 
-<!--
-## Screenshots
-
-### Home
-![Home](./screenshots/home.png)
-
-### Product Listing
-![Products](./screenshots/products.png)
-
-### Checkout
-![Checkout](./screenshots/checkout.png)
-
-### Seller Dashboard
-![Seller](./screenshots/seller.png)
--->
-
----
-
 ## Run Locally
 
 ### Backend
@@ -148,4 +149,4 @@ backend → Express REST API
 
 ---
 
-Built by **Rohan Kohalli**
+<!--Built by **Rohan Kohalli**-->
