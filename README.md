@@ -144,8 +144,8 @@ frontend/
 backend/
 ```
 
-frontend → React UI
-backend → Express REST API
+* frontend → React UI
+* backend → Express REST API
 
 ---
 
