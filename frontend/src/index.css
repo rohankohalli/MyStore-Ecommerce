@@ -11,3 +11,14 @@
         all: revert;
     }
 }
+
+/* Hide scrollbar in Chrome */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar in Firefox */
+.no-scrollbar {
+    scrollbar-width: none;
+    /* Firefox */
+}
