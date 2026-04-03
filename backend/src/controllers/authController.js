@@ -129,7 +129,7 @@ export const logout = async (req, res, next) => {
 }
 
 export const requestPasswordReset = async (req, res, next) => {
-    const frontendUrl = process.env.FRONTEND_URL || "http://localhost:5050"
+    const frontendUrl = process.env.FRONTEND_URL
     try {
         const { email } = req.body
 
@@ -166,7 +166,12 @@ export const confirmPasswordReset = async (req, res, next) => {
     try {
         const { token, newPassword } = req.body;
 
-        const user = await Users.findOne({ where: { resetToken: token, resetTokenExpiresAt: { [Op.gt]: new Date() } } })
+        const user = await Users.findOne({
+            where: {
+                resetToken: token, resetTokenExpiresAt:
+                    { [Op.gt]: new Date() }
+            }
+        })
 
         if (!user) return res.status(400).json({ message: "Invalid or expired token" })
 
