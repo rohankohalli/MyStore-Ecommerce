@@ -13,7 +13,7 @@ import productroutes from './routes/productRoutes.js'
 import sellerRoutes from './routes/sellerRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT
 
 const app = express()
 

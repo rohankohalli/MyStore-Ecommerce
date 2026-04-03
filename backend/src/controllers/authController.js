@@ -8,7 +8,7 @@ import { sendMail } from "../utils/mailService.js";
 
 export const register = async (req, res, next) => {
     try {
-        const { name, email, dateOfBirth, mobileNo, password, role } = req.body;
+        const { name, email, dateOfBirth, mobileNo, password } = req.body;
         const existing = await Users.findOne({ where: { email } })
         if (existing) return res.status(400).json({ message: "Email already in use" })
 
@@ -19,7 +19,6 @@ export const register = async (req, res, next) => {
             dateOfBirth,
             mobileNo,
             password: hashed,
-            role: role,
         })
 
         res.status(201).json({ message: "User registered successfully" })

@@ -30,7 +30,7 @@ const Users = sequelize.define("users", {
         defaultValue: "User",
         allowNull: false
     },
-    status:{
+    status: {
         type: DataTypes.ENUM("Active", "Banned"),
         defaultValue: "Active",
         allowNull: false
@@ -39,14 +39,14 @@ const Users = sequelize.define("users", {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    refreshToken:{
-        type:DataTypes.STRING
+    refreshToken: {
+        type: DataTypes.STRING
     },
-    resetToken:{
-        type:DataTypes.STRING
+    resetToken: {
+        type: DataTypes.STRING
     },
-    resetTokenExpiresAt:{
-        type:DataTypes.DATE
+    resetTokenExpiresAt: {
+        type: DataTypes.DATE
     }
 })
 
