@@ -13,22 +13,16 @@ export const getUser = async (req, res, next) => {
 
         res.json({ user })
     } catch (err) {
-        console.error("getUser error:", err);
-        return res.status(500).json({ message: "Server error" });
+        next(err)
     }
 }
 
 export const updateUser = async (req, res, next) => {
     try {
-        const updates = {}
-        const allowed = ["name", "email", "mobileNo", "dateOfBirth"]
-        for (const key of allowed) {
-            if (req.body[key] !== undefined) {
-                updates[key] = req.body[key];
-            }
-        }
+        const { name, email, mobileNo, dateOfBirth } = req.body
 
-        const updatedUser = Users.update(updates, { where: { id: req.user.id } });
+        const updatedUser = await Users.update({ name, email, mobileNo, dateOfBirth }
+            , { where: { id: req.user.id } });
 
         res.json({ message: "Profile updated", user: updatedUser });
     } catch (error) {
