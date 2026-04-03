@@ -51,6 +51,7 @@ const AppRoutes = () => {
                         <Route path="orders" element={<OrdersList />} />
                         <Route path="orders/:id" element={<OrderDetails />} />
                         <Route path="profile" element={<Profile />} >
+                            <Route index element={<PersonalInformation />} />
                             <Route path="personal" element={<PersonalInformation />} />
                             <Route path="address" element={<AddressPage />} />
                             <Route path="security" element={<SecurityPage />} />
