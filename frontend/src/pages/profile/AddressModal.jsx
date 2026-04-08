@@ -5,7 +5,7 @@ const AddressModal = ({ address, onClose, onSaved }) => {
     return (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center" onClick={onClose}>
 
-            <div className="bg-white p-6 rounded w-108" onClick={(e) => e.stopPropagation()}>
+            <div className="bg-white p-6 rounded w-md" onClick={(e) => e.stopPropagation()}>
 
                 <h3 className="mb-4">
                     {address ? "Edit Address" : "Add Address"}

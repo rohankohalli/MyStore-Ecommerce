@@ -69,7 +69,7 @@ const AddAddress = ({ onCreated, editingAddress }) => {
                     value={form.phone}
                     type="tel"
                     onChange={handleChange}
-                    placeholder="Phone"
+                    placeholder="Enter a valid Indian mobile number (10 digits, optionally starting with +91)"
                     className="rounded border p-1 bg-white"
                     required
                     pattern="^(\+91)?[6-9]\d{9}$" />

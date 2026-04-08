@@ -1,9 +1,5 @@
 import { body, check, param } from "express-validator";
 
-export const getAddressValidation = [
-    check("id").isInt().withMessage("Invalid Address ID")
-]
-
 export const addAddressValidation = [
     body("fullName").trim().notEmpty().withMessage("Full Name is required")
         .isLength({ min: 5 }).withMessage("Full Name must be atleast 5 characters"),
