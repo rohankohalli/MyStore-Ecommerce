@@ -1,4 +1,4 @@
-import { body, check, param } from "express-validator";
+import { body, param } from "express-validator";
 
 export const addAddressValidation = [
     body("fullName").trim().notEmpty().withMessage("Full Name is required")
