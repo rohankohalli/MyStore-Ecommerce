@@ -26,6 +26,7 @@ import Profile from "../Profile";
 import PersonalInformation from "../profile/PersonalInformation";
 import AddressPage from "../profile/AddressPage";
 import SecurityPage from "../profile/SecurityPage";
+import Loader from "../../common/Loader";
 
 const AppRoutes = () => {
     return (
@@ -66,6 +67,7 @@ const AppRoutes = () => {
                         </Route>
                     </Route>
 
+                    <Route path="loading" element={<Loader />} />
                     <Route path="*" element={<NotFound />} />
                 </Route>
             </Routes>

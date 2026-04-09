@@ -4,6 +4,7 @@ import AddressCard from "../../components/AddressCard.jsx"
 import toast from "react-hot-toast"
 import AddressModal from "./AddressModal.jsx"
 import { Plus } from "lucide-react"
+import Loader from "../../common/Loader.jsx"
 
 const AddressPage = () => {
     const [addresses, setAddresses] = useState([])
@@ -26,7 +27,7 @@ const AddressPage = () => {
         fetchAddresses()
     }, [])
 
-    if (loading) return <p>Loading...</p>
+    if (loading) return <Loader />
     if (error) return <p className="text-danger">Error: {error}</p>
 
     const handleEdit = (address) => {

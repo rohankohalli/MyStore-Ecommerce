@@ -3,13 +3,14 @@ import { useCart } from '../../context/CartContext'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import toast from 'react-hot-toast';
+import Loader from '../../common/Loader';
 
 const Cart = () => {
     const { loading, cart, updateItems, removeItem } = useCart();
     const { isAuthenticated } = useAuth()
     const Navigate = useNavigate()
 
-    if (loading) return <p className="p-6 text-center">Loading cart...</p>;
+    if (loading) return <Loader />
     if (cart.length === 0) return <p className="p-6 text-center">Your cart is empty.</p>;
 
     const subtotal = cart.reduce((sum, item) => sum + item.quantity * Number(item.product.price), 0);
@@ -66,7 +67,7 @@ const Cart = () => {
 
                         <div className="flex items-center">
                             <button
-                                onClick={() => removeItem( cart.id )}
+                                onClick={() => removeItem(cart.id)}
                                 className="flex bg-red-500 text-white p-2 rounded cursor-pointer
                                 hover:bg-red-600  items-center">
                                 <Trash2 className='h-5 w-5' /> Remove

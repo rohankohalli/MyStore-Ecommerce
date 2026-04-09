@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import orderApi from "../../api/orderApi";
 import { Link } from "react-router-dom";
+import Loader from "../../common/Loader";
 
 const OrdersList = () => {
     const [orders, setOrders] = useState([]);
@@ -23,7 +24,7 @@ const OrdersList = () => {
     }, [])
 
     if (orders.length === 0) return <p className="p-6 text-center">No Orders yet!! Order soon</p>;
-    if (loading) return <p className="p-6">Loading Orders...</p>;
+    if (loading) return <Loader />
     if (error) return <p className="p-6 text-red-500">{error}</p>;
 
     return (

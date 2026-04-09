@@ -29,17 +29,17 @@ const SellerOrdersDetail = () => {
 
     const handleClick = async (e) => {
         e.preventDefault()
-        try{
+        try {
             await sellerApi.ShipOrder(id)
             fetchOrderDetail()
             toast.success("Order Shipped!!")
-        } catch(err) {
+        } catch (err) {
             toast.error(err.response?.data?.message || "Failed to ship order")
         }
 
     }
 
-    if (loading) return <p className="p-6">Loading order...</p>
+    if (loading) return <Loader />
     if (error) return <p className="p-6 text-red-500">{error}</p>
     if (!order) return <p className="p-6">Order not found</p>
 

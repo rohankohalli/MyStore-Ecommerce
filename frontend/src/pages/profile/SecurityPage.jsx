@@ -10,6 +10,7 @@ const SecurityPage = () => {
     const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false)
     const [form, setForm] = useState({ currentPassword: "", newPassword: "", confirmNewPassword: "" })
     const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
@@ -18,6 +19,7 @@ const SecurityPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setError('')
+        setLoading(true)
 
         if (form.newPassword !== form.confirmNewPassword) {
             return setError("Passwords do not match")
@@ -31,8 +33,10 @@ const SecurityPage = () => {
             }
         } catch (err) {
             setError(err || 'Password Update failed')
-            console.error("Password Update Failed")
+            console.error("Password Update Failed:", err)
             toast.error("Password Update Failed")
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -54,7 +58,7 @@ const SecurityPage = () => {
                         value={form.currentPassword}
                         onChange={handleChange}
                         type={showCurrentPassword ? "text" : "password"}
-                        className="border w-full rounded bg-white p-1 mt-1" />
+                        className="border w-full rounded bg-white p-1 mt-1" required />
 
                     <button
                         type="button"
@@ -74,7 +78,7 @@ const SecurityPage = () => {
                         value={form.newPassword}
                         onChange={handleChange}
                         type={showNewPassword ? "text" : "password"}
-                        className="border w-full rounded bg-white p-1 mt-1" />
+                        className="border w-full rounded bg-white p-1 mt-1" required />
 
                     <button
                         type="button"
@@ -94,7 +98,7 @@ const SecurityPage = () => {
                         value={form.confirmNewPassword}
                         onChange={handleChange}
                         type={showConfirmNewPassword ? "text" : "password"}
-                        className="border w-full rounded bg-white p-1 mt-1" />
+                        className="border w-full rounded bg-white p-1 mt-1" required />
 
                     <button
                         type="button"
@@ -106,8 +110,9 @@ const SecurityPage = () => {
                     </button>
                 </div>
                 <div className="flex">
-                    <button className="bg-green-400 text-white px-4 py-2 rounded cursor-pointer">
-                        Change Password
+                    <button className="bg-green-400 text-white px-4 py-2 rounded cursor-pointer"
+                        disabled={loading}>
+                        {loading ? "Changing Password.." : "Change Password"}
                     </button>
                 </div>
             </form>

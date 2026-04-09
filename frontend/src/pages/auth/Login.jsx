@@ -1,7 +1,8 @@
 import { useContext, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { Eye, EyeOff } from "lucide-react"
-import { AuthContext, useAuth } from "../../context/AuthContext"
+import { AuthContext } from "../../context/AuthContext"
+import Spinner from "../../common/Spinner";
 
 const Login = () => {
     const [form, setForm] = useState({ email: '', password: '' })
@@ -10,7 +11,7 @@ const Login = () => {
     const { login } = useContext(AuthContext)
     const navigate = useNavigate()
     const [remember, setRemember] = useState(false)
-    const { user, loading } = useAuth();
+    const [loading, setLoading] = useState(false)
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
@@ -18,7 +19,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
+        setLoading(true)
         try {
             const result = await login(form.email, form.password, remember)
 
@@ -28,6 +29,9 @@ const Login = () => {
         } catch (err) {
             console.error("Login error:", err);
             setError()
+            toast.error(err || "Login Failed!! Please Try Again")
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -68,9 +72,10 @@ const Login = () => {
                     </label>
 
 
-                    <button type="submit"
-                        className="bg-green-500 text-white py-2 rounded-lg font-bold hover:bg-green-400 cursor-pointer">
-                        Login
+                    <button type="submit" disabled={loading}
+                        className="bg-green-500 text-white py-2 rounded-lg font-bold hover:bg-green-400 cursor-pointer gap-3 flex items-center justify-center">
+                        {loading && <Spinner />}
+                        {loading ? "Logging in..." : "Login"}
                     </button>
                 </form>
 

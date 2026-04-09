@@ -35,6 +35,7 @@ const CategoriesSection = () => {
                             className="flex flex-col items-center gap-4 border rounded p-4 w-3xs shrink-0 hover:shadow-lg">
                             <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
                                 <span className="text-sm">{ctg.label[0]}</span>
+                                {/* <span className="text-sm">{ctg.icons}</span> */}
                             </div>
                             <span className="text-sm">{ctg.label}</span>
                         </Link>

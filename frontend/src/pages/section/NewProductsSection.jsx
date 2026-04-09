@@ -1,6 +1,7 @@
 import productApi from "../../api/productApi";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Loader from "../../common/Loader";
 
 const NewProductsSection = () => {
     const [products, setProducts] = useState([])
@@ -22,7 +23,7 @@ const NewProductsSection = () => {
         loadProducts()
     }, [])
 
-    if (loading) return <div>Loading...</div>
+    if (loading) return <Loader />
     if (error) return <div>{error}</div>
 
     return (

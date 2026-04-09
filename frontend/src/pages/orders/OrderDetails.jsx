@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import orderApi from "../../api/orderApi"
+import Loader from "../../common/Loader"
 
 const OrderDetails = () => {
 
@@ -24,7 +25,7 @@ const OrderDetails = () => {
         fetchOrder()
     }, [id])
 
-    if (loading) return <p className="p-6">Loading Order...</p>;
+    if (loading) return <Loader />
     if (error) return <p className="p-6 text-red-500">{error}</p>;
 
     return (
@@ -37,7 +38,7 @@ const OrderDetails = () => {
                         <img
                             src={`${import.meta.env.VITE_API_URL}${item.product.image}`}
                             alt={item.product.name}
-                            className="w-16 h-16 object-cover rounded-md"/>
+                            className="w-16 h-16 object-cover rounded-md" />
 
                         <div className="flex-1">
                             <p className="font-medium">{item.product.name}</p>

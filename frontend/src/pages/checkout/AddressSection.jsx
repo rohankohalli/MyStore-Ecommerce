@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import addressApi from "../../api/addressApi.js"
 import AddAddress from "./AddAddress.jsx"
+import Loader from "../../common/Loader.jsx"
 
 const AddressSection = ({ value, onChange }) => {
     const [addresses, setAddresses] = useState([])
@@ -22,7 +23,7 @@ const AddressSection = ({ value, onChange }) => {
         fetchAddress()
     }, [])
 
-    if (loading) return <p>Loading Address..</p>
+    if (loading) return <Loader />
     if (error) return <p className="text-red-500">Error: {error.message || error}</p>
     if (addresses.length === 0)
         return <AddAddress onCreated={(newAddress) => {

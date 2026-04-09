@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import productApi from "../../api/productApi"
 import { Link } from "react-router-dom"
+import Loader from "../../common/Loader"
 
 const TrendingSection = () => {
     const [trendingProducts, setTrendingProducts] = useState([])
@@ -22,7 +23,7 @@ const TrendingSection = () => {
         trendingProducts()
     }, [])
 
-    if (loading) return <div>Loading...</div>
+    if (loading) return <Loader />
     if (error) return <div>{error}</div>
 
     return (

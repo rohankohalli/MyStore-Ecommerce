@@ -5,6 +5,7 @@ import productApi from "../../api/productApi";
 import { useAuth } from "../../context/AuthContext";
 import EditProductModal from "./EditProductModal";
 import toast from 'react-hot-toast';
+import Loader from "../../common/Loader";
 
 const ProductDetails = () => {
     const { id } = useParams()
@@ -58,7 +59,7 @@ const ProductDetails = () => {
         setEditing(null);
     }
 
-    if (loading) return <p className="p-6">Loading...</p>
+    if (loading) return <Loader text={"Loading Products..."} />
     if (error) return <p className="p-6 text-red-500">{error}</p>
     if (!product) return <p className="p-6">Product not found</p>
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import orderApi from "../../api/orderApi";
+import Loader from "../../common/Loader";
 
 export default function OrderSuccess() {
     const { id } = useParams();
@@ -26,9 +27,7 @@ export default function OrderSuccess() {
         }
     }, [id]);
 
-    if (loading) {
-        return <div className="text-center mt-10">Checking order...</div>;
-    }
+    if (loading) return <Loader text={"Checking Order..."} />;
 
     if (error) {
         return <div className="text-center text-red-500 mt-10">{error}</div>;

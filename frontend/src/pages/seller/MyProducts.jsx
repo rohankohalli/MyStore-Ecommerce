@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import productApi from "../../api/productApi"
 import ProductCard from "../../components/ProductCard";
+import Loader from "../../common/Loader";
 
 const MyProducts = () => {
     const [products, setProducts] = useState([])
@@ -21,7 +22,7 @@ const MyProducts = () => {
         load()
     }, [])
 
-    if (loading) return <div>Loading...</div>
+    if (loading) return <Loader text={"Loading Your Products..."} />
     if (error) return <div>{error}</div>
 
     return (

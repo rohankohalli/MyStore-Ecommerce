@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useState } from "react"
 import sellerApi from "../../api/sellerApi"
 import { Link } from "react-router-dom"
+import Loader from "../../common/Loader"
 
 const SellerOrders = () => {
     const [orders, setOrders] = useState([])
@@ -22,7 +23,7 @@ const SellerOrders = () => {
         fetchOrders()
     }, [])
 
-    if (loading) return <div>Loading...</div>
+    if (loading) return <Loader />
     if (error) return <div>{error}</div>
 
     if (orders.length === 0) {

@@ -2,6 +2,7 @@ import { Eye, EyeOff } from "lucide-react"
 import { useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 import authApi from "../../api/authApi"
+import toast from "react-hot-toast"
 
 const ResetPassword = () => {
     const [searchParams] = useSearchParams()
@@ -26,6 +27,7 @@ const ResetPassword = () => {
 
         try {
             await authApi.passwordReset({ token, newPassword: password })
+            toast.success("Password reset successful! Please login with your new password.")
             navigate("/login?reset=success");
         } catch (err) {
             setError(err.response?.data?.message);
