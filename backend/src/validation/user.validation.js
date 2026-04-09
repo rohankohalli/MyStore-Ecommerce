@@ -8,6 +8,6 @@ export const updateUserValidation = [
 ]
 
 export const changePasswordValidation = [
-    body("changePassword").notEmpty().withMessage("Current Password is required"),
+    body("currentPassword").notEmpty().withMessage("Current Password is required"),
     body("newPassword").notEmpty().withMessage("new Password is required")
 ]
