@@ -7,6 +7,7 @@ const SearchBox = () => {
    const [products, setProducts] = useState([])
    const [query, setQuery] = useState("")
    const navigate = useNavigate()
+   const [debouncedQuery, setDebouncedQuery] = useState("")
 
    useEffect(() => {
       const fetchProducts = async () => {
@@ -20,7 +21,15 @@ const SearchBox = () => {
       fetchProducts()
    }, [])
 
-   const searchRes = query ? products.filter((p) => p.name.toLowerCase().includes(query.toLowerCase())) : []
+   useEffect(() => {
+      const handler = setTimeout(() => {
+         setDebouncedQuery(query);
+      }, 300);
+
+      return () => clearTimeout(handler);
+   }, [query]);
+
+   const searchRes = debouncedQuery ? products.filter((p) => p.name.toLowerCase().includes(debouncedQuery.toLowerCase())) : []
    return (
       <div className="relative">
          <Search className="absolute left-3 top-1/2 -translate-y-1/2" />
